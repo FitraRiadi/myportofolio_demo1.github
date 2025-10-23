@@ -31,7 +31,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(10, 10, 10, 0.7);
+      background: rgba(10, 10, 10, 0.8);
       backdrop-filter: blur(10px);
       z-index: 1000;
     }
@@ -41,6 +41,11 @@
       font-weight: 700;
       font-size: 1.4em;
       letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
     }
 
     nav a {
@@ -55,9 +60,67 @@
       color: #00ffe1;
     }
 
+    /* HAMBURGER */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      background: #00ffe1;
+      height: 3px;
+      width: 25px;
+      margin: 4px 0;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* NAV MOBILE */
+    @media (max-width: 768px) {
+      nav {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        align-items: flex-start;
+        width: 70%;
+        padding: 20px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+
+      nav.active {
+        transform: translateX(0);
+        box-shadow: -5px 0 15px rgba(0, 255, 225, 0.2);
+      }
+
+      nav a {
+        margin: 15px 0;
+        width: 100%;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
     /* HERO */
     .hero {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -68,8 +131,8 @@
     }
 
     .hero img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 20px;
@@ -136,87 +199,62 @@
       transform: scale(1.05);
     }
 
-    /* ABOUT */
-    .about {
+    /* SECTION BASE */
+    section {
       padding: 120px 60px;
       text-align: center;
+    }
+
+    .about, .skills {
       background: #111;
     }
 
-    .about h2 {
+    .projects, .social {
+      background: #0d0d0d;
+    }
+
+    h2 {
       font-size: 2em;
       color: #00ffe1;
       margin-bottom: 20px;
     }
 
-    .about p {
+    .about p, .project p {
       color: #ccc;
-      max-width: 800px;
-      margin: 0 auto;
       line-height: 1.8;
+      max-width: 800px;
+      margin: auto;
     }
 
-    /* PROJECTS */
-    .projects {
-      padding: 120px 60px;
-      text-align: center;
-      background: #0d0d0d;
-    }
-
-    .projects h2 {
-      font-size: 2em;
-      color: #00ffe1;
-      margin-bottom: 40px;
-    }
-
+    /* PROJECT */
     .project-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
+      margin-top: 40px;
     }
 
     .project {
       background: #1a1a1a;
       border-radius: 10px;
       padding: 25px;
-      transition: 0.3s;
       border: 2px solid transparent;
+      transition: 0.3s;
     }
 
     .project:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 20px #00ffe1;
       border-color: #00ffe1;
-    }
-
-    .project h3 {
-      color: #00ffe1;
-      margin-bottom: 10px;
-    }
-
-    .project p {
-      color: #bbb;
-      font-size: 0.9em;
+      box-shadow: 0 0 20px #00ffe1;
+      transform: scale(1.03);
     }
 
     /* SKILLS */
-    .skills {
-      padding: 120px 60px;
-      background: #111;
-      text-align: center;
-    }
-
-    .skills h2 {
-      font-size: 2em;
-      color: #00ffe1;
-      margin-bottom: 30px;
-    }
-
     .skill-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
+      margin-top: 30px;
     }
 
     .skill {
@@ -225,8 +263,8 @@
       border-radius: 30px;
       color: #00ffe1;
       font-weight: 600;
-      transition: 0.3s;
       border: 1px solid #00ffe133;
+      transition: 0.3s;
     }
 
     .skill:hover {
@@ -235,18 +273,6 @@
     }
 
     /* SOCIAL */
-    .social {
-      padding: 80px 40px;
-      background: #0d0d0d;
-      text-align: center;
-    }
-
-    .social h2 {
-      color: #00ffe1;
-      margin-bottom: 30px;
-      font-size: 1.8em;
-    }
-
     .social-icons {
       display: flex;
       justify-content: center;
@@ -288,31 +314,37 @@
       color: #00ffe1;
     }
 
-    /* RESPONSIVE */
+    /* RESPONSIVE FULL */
     @media (max-width: 768px) {
       header {
         padding: 15px 25px;
       }
 
-      nav a {
-        margin: 0 10px;
-      }
-
       .hero h2 {
-        font-size: 2em;
+        font-size: 1.8em;
       }
 
-      .hero img {
-        width: 100px;
-        height: 100px;
+      .hero p {
+        font-size: 1em;
+        max-width: 90%;
       }
 
-      .about, .projects, .skills {
+      section {
         padding: 80px 25px;
       }
 
       .project-list {
         grid-template-columns: 1fr;
+      }
+
+      .skill-list {
+        gap: 10px;
+      }
+
+      .social-icons a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5em;
       }
     }
   </style>
@@ -320,7 +352,10 @@
 <body>
   <header>
     <h1>FITRA RIADI</h1>
-    <nav>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="navbar">
       <a href="#home">Beranda</a>
       <a href="#about">Tentang</a>
       <a href="#projects">Projek</a>
@@ -346,18 +381,9 @@
   <section id="projects" class="projects">
     <h2>Projekku</h2>
     <div class="project-list">
-      <div class="project">
-        <h3>Knight Battle</h3>
-        <p>Game RPG berbasis Python (Pygame) dengan sistem pertempuran real-time, lokasi menantang, dan grafis pixel-art.</p>
-      </div>
-      <div class="project">
-        <h3>Merdeka Wash</h3>
-        <p>Aplikasi pencucian kendaraan untuk SMK Merdeka. Dibuat dengan Python dan SMTP untuk sistem notifikasi otomatis.</p>
-      </div>
-      <div class="project">
-        <h3>UMKM Teras Nin</h3>
-        <p>Website e-commerce sederhana untuk mempromosikan produk UMKM lokal, menampilkan fitur katalog, keranjang, dan checkout.</p>
-      </div>
+      <div class="project"><h3>Knight Battle</h3><p>Game RPG berbasis Python (Pygame) dengan sistem real-time dan grafis pixel-art.</p></div>
+      <div class="project"><h3>Merdeka Wash</h3><p>Aplikasi pencucian kendaraan untuk SMK Merdeka menggunakan Python dan SMTP.</p></div>
+      <div class="project"><h3>UMKM Teras Nin</h3><p>Website e-commerce sederhana untuk promosi produk UMKM lokal.</p></div>
     </div>
   </section>
 
@@ -381,7 +407,6 @@
     </div>
   </section>
 
-  <!-- Social Media -->
   <section class="social">
     <h2>Connect With Me</h2>
     <div class="social-icons">
@@ -395,5 +420,15 @@
   <footer>
     <p>© 2025 <span>Fitra Riadi</span> | Game & Software Developer</p>
   </footer>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
+
+    toggle.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+      toggle.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
