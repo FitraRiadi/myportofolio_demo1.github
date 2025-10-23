@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitra Riadi - Game & Software Developer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0d0d0d;
+      color: #eaeaea;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: #00ffe1;
+      font-weight: 700;
+      font-size: 1.4em;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #eaeaea;
+      margin: 0 20px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ffe1;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0a0a0a, #121212);
+      padding: 0 20px;
+    }
+
+    .hero img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h2 {
+      font-size: 2.6em;
+      font-weight: 700;
+      color: #00ffe1;
+      white-space: nowrap;
+      border-right: 3px solid #00ffe1;
+      width: 0;
+      overflow: hidden;
+      animation: typing 3.5s steps(30, end) forwards, blink 0.7s infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 16ch }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .hero p {
+      margin-top: 25px;
+      color: #bbb;
+      font-size: 1.1em;
+      max-width: 650px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 3.5s;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .btn {
+      margin-top: 40px;
+      background: #00ffe1;
+      color: #0d0d0d;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 4s;
+    }
+
+    .btn:hover {
+      box-shadow: 0 0 15px #00ffe1;
+      transform: scale(1.05);
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 120px 60px;
+      text-align: center;
+      background: #111;
+    }
+
+    .about h2 {
+      font-size: 2em;
+      color: #00ffe1;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      color: #ccc;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* PROJECTS */
+    .projects {
+      padding: 120px 60px;
+      text-align: center;
+      background: #0d0d0d;
+    }
+
+    .projects h2 {
+      font-size: 2em;
+      color: #00ffe1;
+      margin-bottom: 40px;
+    }
+
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project {
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 25px;
+      transition: 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .project:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px #00ffe1;
+      border-color: #00ffe1;
+    }
+
+    .project h3 {
+      color: #00ffe1;
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      color: #bbb;
+      font-size: 0.9em;
+    }
+
+    /* SKILLS */
+    .skills {
+      padding: 120px 60px;
+      background: #111;
+      text-align: center;
+    }
+
+    .skills h2 {
+      font-size: 2em;
+      color: #00ffe1;
+      margin-bottom: 30px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .skill {
+      background: #1a1a1a;
+      padding: 15px 25px;
+      border-radius: 30px;
+      color: #00ffe1;
+      font-weight: 600;
+      transition: 0.3s;
+      border: 1px solid #00ffe133;
+    }
+
+    .skill:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00ffe1;
+    }
+
+    /* SOCIAL */
+    .social {
+      padding: 80px 40px;
+      background: #0d0d0d;
+      text-align: center;
+    }
+
+    .social h2 {
+      color: #00ffe1;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .social-icons a {
+      color: #00ffe1;
+      font-size: 1.8em;
+      transition: 0.3s;
+      border: 2px solid #00ffe1;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .social-icons a:hover {
+      background: #00ffe1;
+      color: #0d0d0d;
+      box-shadow: 0 0 20px #00ffe1;
+      transform: scale(1.1);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a0a;
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+      font-size: 0.9em;
+      border-top: 1px solid #111;
+    }
+
+    footer span {
+      color: #00ffe1;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 25px;
+      }
+
+      nav a {
+        margin: 0 10px;
+      }
+
+      .hero h2 {
+        font-size: 2em;
+      }
+
+      .hero img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .about, .projects, .skills {
+        padding: 80px 25px;
+      }
+
+      .project-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FITRA RIADI</h1>
+    <nav>
+      <a href="#home">Beranda</a>
+      <a href="#about">Tentang</a>
+      <a href="#projects">Projek</a>
+      <a href="#skills">Teknologi</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <img src="assets/my.png" alt="Logo Fitra">
+    <h2>Hi! Iam Fitra Riadi 👋</h2>
+    <p>Seorang siswa dan software developer yang berfokus pada pengembangan game pixel-art, aplikasi Python, dan proyek kreatif berbasis teknologi modern.  
+      Aku percaya setiap baris kode adalah langkah menuju karya yang bisa dinikmati banyak orang.</p>
+    <a href="#projects" class="btn">Lihat Proyekku</a>
+  </section>
+
+  <section id="about" class="about">
+    <h2>Tentang Aku</h2>
+    <p>Aku adalah seorang siswa yang suka bereksperimen dengan dunia pemrograman.  
+      Fokusku saat ini ada di pengembangan game menggunakan <b>Pygame</b> dan <b>LibGDX</b>, serta pembuatan aplikasi menggunakan <b>Python</b>.  
+      Tujuanku adalah membangun industri game pixel-art lokal yang bisa membawa kesenangan dan inspirasi ke banyak orang.</p>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>Projekku</h2>
+    <div class="project-list">
+      <div class="project">
+        <h3>Knight Battle</h3>
+        <p>Game RPG berbasis Python (Pygame) dengan sistem pertempuran real-time, lokasi menantang, dan grafis pixel-art.</p>
+      </div>
+      <div class="project">
+        <h3>Merdeka Wash</h3>
+        <p>Aplikasi pencucian kendaraan untuk SMK Merdeka. Dibuat dengan Python dan SMTP untuk sistem notifikasi otomatis.</p>
+      </div>
+      <div class="project">
+        <h3>UMKM Teras Nin</h3>
+        <p>Website e-commerce sederhana untuk mempromosikan produk UMKM lokal, menampilkan fitur katalog, keranjang, dan checkout.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Teknologi yang Dikuasai</h2>
+    <div class="skill-list">
+      <div class="skill">Python</div>
+      <div class="skill">PHP</div>
+      <div class="skill">Pygame</div>
+      <div class="skill">Kivy</div>
+      <div class="skill">Buildozer</div>
+      <div class="skill">Java</div>
+      <div class="skill">LibGDX</div>
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">Docker</div>
+      <div class="skill">SMTP Email API</div>
+      <div class="skill">SQL</div>
+      <div class="skill">UI/UX Design</div>
+    </div>
+  </section>
+
+  <!-- Social Media -->
+  <section class="social">
+    <h2>Connect With Me</h2>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/fitra_riyadi._/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.youtube.com/@IamFit01" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="mailto:fitrasmkmerdeka@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 <span>Fitra Riadi</span> | Game & Software Developer</p>
+  </footer>
+</body>
+</html>
