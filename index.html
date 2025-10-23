@@ -8,351 +8,175 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    * {margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth;}
+    body {background:#0d0d0d; color:#eaeaea; font-family:'Poppins',sans-serif; overflow-x:hidden;}
 
-    body {
-      background: #0d0d0d;
-      color: #eaeaea;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-    }
-
+    /* HEADER */
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
+      position:fixed; top:0; left:0; width:100%;
+      padding:20px 60px; display:flex; justify-content:space-between; align-items:center;
+      background:rgba(10,10,10,0.8); backdrop-filter:blur(10px);
+      z-index:1000;
     }
+    header h1 {color:#00ffe1; font-weight:700; font-size:1.4em; letter-spacing:2px;}
 
-    header h1 {
-      color: #00ffe1;
-      font-weight: 700;
-      font-size: 1.4em;
-      letter-spacing: 2px;
-    }
+    nav {display:flex; align-items:center; gap:20px;}
+    nav a {text-decoration:none; color:#eaeaea; font-weight:500; transition:0.3s;}
+    nav a:hover {color:#00ffe1;}
 
-    nav {
-      display: flex;
-      align-items: center;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #eaeaea;
-      margin: 0 20px;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #00ffe1;
-    }
-
-    /* HAMBURGER */
+    /* HAMBURGER BUTTON (custom lines) */
     .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
+      display:none;
+      width:30px; height:22px;
+      position:relative; cursor:pointer;
+      transition:all .3s ease;
     }
-
     .menu-toggle span {
-      background: #00ffe1;
-      height: 3px;
-      width: 25px;
-      margin: 4px 0;
-      border-radius: 5px;
-      transition: 0.3s;
+      position:absolute; height:3px; width:100%; background:#00ffe1; border-radius:3px;
+      left:0; transition:all 0.4s ease;
     }
+    .menu-toggle span:nth-child(1){top:0;}
+    .menu-toggle span:nth-child(2){top:9px;}
+    .menu-toggle span:nth-child(3){top:18px;}
 
-    .menu-toggle.open span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+    .menu-toggle.active span:nth-child(1){
+      transform:rotate(45deg); top:9px;
     }
-
-    .menu-toggle.open span:nth-child(2) {
-      opacity: 0;
+    .menu-toggle.active span:nth-child(2){
+      opacity:0;
     }
-
-    .menu-toggle.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-
-    /* NAV MOBILE */
-    @media (max-width: 768px) {
-      nav {
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        flex-direction: column;
-        align-items: flex-start;
-        width: 70%;
-        padding: 20px;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-      }
-
-      nav.active {
-        transform: translateX(0);
-        box-shadow: -5px 0 15px rgba(0, 255, 225, 0.2);
-      }
-
-      nav a {
-        margin: 15px 0;
-        width: 100%;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
+    .menu-toggle.active span:nth-child(3){
+      transform:rotate(-45deg); top:9px;
     }
 
     /* HERO */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(135deg, #0a0a0a, #121212);
-      padding: 0 20px;
+      min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; background:linear-gradient(135deg,#0a0a0a,#121212); padding:0 20px;
     }
 
     .hero img {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeUp 2s ease forwards;
+      width:130px; height:130px; border-radius:50%; object-fit:cover; margin-bottom:20px;
+      opacity:0; animation:fadeUp 2s ease forwards;
     }
 
     @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0%{opacity:0; transform:translateY(20px);}
+      100%{opacity:1; transform:translateY(0);}
     }
 
     .hero h2 {
-      font-size: 2.6em;
-      font-weight: 700;
-      color: #00ffe1;
-      white-space: nowrap;
-      border-right: 3px solid #00ffe1;
-      width: 0;
-      overflow: hidden;
-      animation: typing 3.5s steps(30, end) forwards, blink 0.7s infinite;
+      font-size:2.6em; font-weight:700; color:#00ffe1;
+      white-space:nowrap; border-right:3px solid #00ffe1; width:0; overflow:hidden;
+      animation:typing 3.5s steps(30,end) forwards, blink 0.7s infinite;
     }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 16ch }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
+    @keyframes typing {from{width:0} to{width:16ch}}
+    @keyframes blink {50%{border-color:transparent}}
 
     .hero p {
-      margin-top: 25px;
-      color: #bbb;
-      font-size: 1.1em;
-      max-width: 650px;
-      line-height: 1.8;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards;
-      animation-delay: 3.5s;
+      margin-top:25px; color:#bbb; font-size:1.1em; max-width:650px; line-height:1.8;
+      opacity:0; animation:fadeIn 2s ease forwards; animation-delay:3.5s;
     }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    @keyframes fadeIn {to{opacity:1;}}
 
     .btn {
-      margin-top: 40px;
-      background: #00ffe1;
-      color: #0d0d0d;
-      padding: 12px 30px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.3s;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards;
-      animation-delay: 4s;
+      margin-top:40px; background:#00ffe1; color:#0d0d0d; padding:12px 30px; border-radius:50px;
+      font-weight:600; text-decoration:none; transition:0.3s;
+      opacity:0; animation:fadeIn 2s ease forwards; animation-delay:4s;
     }
+    .btn:hover {box-shadow:0 0 15px #00ffe1; transform:scale(1.05);}
 
-    .btn:hover {
-      box-shadow: 0 0 15px #00ffe1;
-      transform: scale(1.05);
-    }
+    /* SECTIONS */
+    section {padding:120px 60px; text-align:center;}
+    .about,.skills {background:#111;}
+    .projects,.social {background:#0d0d0d;}
+    h2 {font-size:2em; color:#00ffe1; margin-bottom:20px;}
+    .about p,.project p {color:#ccc; line-height:1.8; max-width:800px; margin:auto;}
 
-    /* SECTION BASE */
-    section {
-      padding: 120px 60px;
-      text-align: center;
-    }
-
-    .about, .skills {
-      background: #111;
-    }
-
-    .projects, .social {
-      background: #0d0d0d;
-    }
-
-    h2 {
-      font-size: 2em;
-      color: #00ffe1;
-      margin-bottom: 20px;
-    }
-
-    .about p, .project p {
-      color: #ccc;
-      line-height: 1.8;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    /* PROJECT */
     .project-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px; margin-top:40px;
     }
 
     .project {
-      background: #1a1a1a;
-      border-radius: 10px;
-      padding: 25px;
-      border: 2px solid transparent;
-      transition: 0.3s;
+      background:#1a1a1a; border-radius:10px; padding:25px;
+      border:2px solid transparent; transition:0.3s;
     }
-
     .project:hover {
-      border-color: #00ffe1;
-      box-shadow: 0 0 20px #00ffe1;
-      transform: scale(1.03);
+      border-color:#00ffe1; box-shadow:0 0 20px #00ffe1; transform:scale(1.03);
     }
 
-    /* SKILLS */
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 30px;
+    /* SKILL - Auto Scroll Horizontal */
+    .skills {overflow:hidden; position:relative;}
+    .skill-marquee {
+      display:flex; gap:30px;
+      width:max-content;
+      animation:scrollLeft 30s linear infinite;
+      padding:20px 0;
     }
-
+    @keyframes scrollLeft {
+      0% {transform:translateX(0);}
+      100% {transform:translateX(-50%);}
+    }
     .skill {
-      background: #1a1a1a;
-      padding: 15px 25px;
-      border-radius: 30px;
-      color: #00ffe1;
-      font-weight: 600;
-      border: 1px solid #00ffe133;
-      transition: 0.3s;
+      display:flex; align-items:center; gap:10px;
+      background:#1a1a1a; padding:14px 26px; border-radius:35px;
+      color:#00ffe1; font-weight:600;
+      border:1px solid #00ffe133; transition:all 0.3s ease;
+      box-shadow:inset 0 0 10px rgba(0,255,225,0.05);
+      white-space:nowrap;
     }
-
-    .skill:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #00ffe1;
-    }
+    .skill i {font-size:1.4em; color:#00ffe1; transition:transform 0.3s ease,color 0.3s ease;}
+    .skill:hover {transform:scale(1.1); box-shadow:0 0 20px #00ffe1;}
+    .skill:hover i {transform:rotate(10deg) scale(1.2); color:#0d0d0d; background:#00ffe1; border-radius:50%; padding:4px;}
 
     /* SOCIAL */
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
+    .social-icons {display:flex; justify-content:center; gap:30px; flex-wrap:wrap;}
     .social-icons a {
-      color: #00ffe1;
-      font-size: 1.8em;
-      transition: 0.3s;
-      border: 2px solid #00ffe1;
-      border-radius: 50%;
-      width: 55px;
-      height: 55px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      color:#00ffe1; font-size:1.8em; transition:0.3s; border:2px solid #00ffe1;
+      border-radius:50%; width:55px; height:55px; display:flex; justify-content:center; align-items:center;
     }
-
     .social-icons a:hover {
-      background: #00ffe1;
-      color: #0d0d0d;
-      box-shadow: 0 0 20px #00ffe1;
-      transform: scale(1.1);
+      background:#00ffe1; color:#0d0d0d; box-shadow:0 0 20px #00ffe1; transform:scale(1.1);
     }
 
-    /* FOOTER */
-    footer {
-      background: #0a0a0a;
-      text-align: center;
-      padding: 40px 20px;
-      color: #666;
-      font-size: 0.9em;
-      border-top: 1px solid #111;
-    }
+    footer {background:#0a0a0a; text-align:center; padding:40px 20px; color:#666; font-size:0.9em; border-top:1px solid #111;}
+    footer span {color:#00ffe1;}
 
-    footer span {
-      color: #00ffe1;
-    }
+    /* ANIMASI SCROLL */
+    .scroll-anim {opacity:0; transform:translateY(60px); transition:all 1s ease;}
+    .scroll-anim.show {opacity:1; transform:translateY(0);}
 
-    /* RESPONSIVE FULL */
-    @media (max-width: 768px) {
-      header {
-        padding: 15px 25px;
+    /* MOBILE */
+    @media(max-width:768px){
+      header {padding:15px 25px;}
+      .menu-toggle {display:block;}
+      nav {
+        position:fixed;
+        top:70px; right:-100%;
+        background:rgba(10,10,10,0.95);
+        width:200px;
+        height:calc(100vh - 70px);
+        flex-direction:column;
+        align-items:flex-start;
+        padding:30px 20px;
+        gap:25px;
+        transition:0.5s ease;
       }
-
-      .hero h2 {
-        font-size: 1.8em;
-      }
-
-      .hero p {
-        font-size: 1em;
-        max-width: 90%;
-      }
-
-      section {
-        padding: 80px 25px;
-      }
-
-      .project-list {
-        grid-template-columns: 1fr;
-      }
-
-      .skill-list {
-        gap: 10px;
-      }
-
-      .social-icons a {
-        width: 45px;
-        height: 45px;
-        font-size: 1.5em;
-      }
+      nav.show {right:0; box-shadow:-2px 0 15px #00ffe155;}
+      nav a {font-size:1.1em; width:100%;}
+      .hero h2{font-size:1.8em;}
+      .hero p{font-size:1em; max-width:90%;}
+      section{padding:80px 25px;}
+      .project-list{grid-template-columns:1fr;}
+      .social-icons a{width:45px; height:45px; font-size:1.5em;}
     }
   </style>
 </head>
 <body>
   <header>
     <h1>FITRA RIADI</h1>
-    <div class="menu-toggle" id="menu-toggle">
+    <div class="menu-toggle" id="menuToggle">
       <span></span><span></span><span></span>
     </div>
     <nav id="navbar">
@@ -366,19 +190,16 @@
   <section id="home" class="hero">
     <img src="assets/my.png" alt="Logo Fitra">
     <h2>Hi! Iam Fitra Riadi 👋</h2>
-    <p>Seorang siswa dan software developer yang berfokus pada pengembangan game pixel-art, aplikasi Python, dan proyek kreatif berbasis teknologi modern.  
-      Aku percaya setiap baris kode adalah langkah menuju karya yang bisa dinikmati banyak orang.</p>
+    <p>Seorang siswa dan software developer yang berfokus pada pengembangan game pixel-art, aplikasi Python, dan proyek kreatif berbasis teknologi modern.</p>
     <a href="#projects" class="btn">Lihat Proyekku</a>
   </section>
 
-  <section id="about" class="about">
+  <section id="about" class="about scroll-anim">
     <h2>Tentang Aku</h2>
-    <p>Aku adalah seorang siswa yang suka bereksperimen dengan dunia pemrograman.  
-      Fokusku saat ini ada di pengembangan game menggunakan <b>Pygame</b> dan <b>LibGDX</b>, serta pembuatan aplikasi menggunakan <b>Python</b>.  
-      Tujuanku adalah membangun industri game pixel-art lokal yang bisa membawa kesenangan dan inspirasi ke banyak orang.</p>
+    <p>Aku adalah seorang siswa yang suka bereksperimen dengan dunia pemrograman. Fokusku saat ini ada di pengembangan game menggunakan <b>Pygame</b> dan <b>LibGDX</b>, serta pembuatan aplikasi menggunakan <b>Python</b>.</p>
   </section>
 
-  <section id="projects" class="projects">
+  <section id="projects" class="projects scroll-anim">
     <h2>Projekku</h2>
     <div class="project-list">
       <div class="project"><h3>Knight Battle</h3><p>Game RPG berbasis Python (Pygame) dengan sistem real-time dan grafis pixel-art.</p></div>
@@ -387,27 +208,39 @@
     </div>
   </section>
 
-  <section id="skills" class="skills">
+  <section id="skills" class="skills scroll-anim">
     <h2>Teknologi yang Dikuasai</h2>
-    <div class="skill-list">
-      <div class="skill">Python</div>
-      <div class="skill">PHP</div>
-      <div class="skill">Pygame</div>
-      <div class="skill">Kivy</div>
-      <div class="skill">Buildozer</div>
-      <div class="skill">Java</div>
-      <div class="skill">LibGDX</div>
-      <div class="skill">HTML</div>
-      <div class="skill">CSS</div>
-      <div class="skill">JavaScript</div>
-      <div class="skill">Docker</div>
-      <div class="skill">SMTP Email API</div>
-      <div class="skill">SQL</div>
-      <div class="skill">UI/UX Design</div>
+    <div class="skill-marquee">
+      <div class="skill"><i class="fab fa-python"></i> Python</div>
+      <div class="skill"><i class="fab fa-php"></i> PHP</div>
+      <div class="skill"><i class="fas fa-gamepad"></i> Pygame</div>
+      <div class="skill"><i class="fas fa-mobile-alt"></i> Kivy</div>
+      <div class="skill"><i class="fas fa-robot"></i> Buildozer</div>
+      <div class="skill"><i class="fab fa-java"></i> Java</div>
+      <div class="skill"><i class="fas fa-dragon"></i> LibGDX</div>
+      <div class="skill"><i class="fab fa-html5"></i> HTML</div>
+      <div class="skill"><i class="fab fa-css3-alt"></i> CSS</div>
+      <div class="skill"><i class="fab fa-js"></i> JavaScript</div>
+      <div class="skill"><i class="fab fa-docker"></i> Docker</div>
+      <div class="skill"><i class="fas fa-database"></i> SQL</div>
+
+      <!-- Ulangi agar looping seamless -->
+      <div class="skill"><i class="fab fa-python"></i> Python</div>
+      <div class="skill"><i class="fab fa-php"></i> PHP</div>
+      <div class="skill"><i class="fas fa-gamepad"></i> Pygame</div>
+      <div class="skill"><i class="fas fa-mobile-alt"></i> Kivy</div>
+      <div class="skill"><i class="fas fa-robot"></i> Buildozer</div>
+      <div class="skill"><i class="fab fa-java"></i> Java</div>
+      <div class="skill"><i class="fas fa-dragon"></i> LibGDX</div>
+      <div class="skill"><i class="fab fa-html5"></i> HTML</div>
+      <div class="skill"><i class="fab fa-css3-alt"></i> CSS</div>
+      <div class="skill"><i class="fab fa-js"></i> JavaScript</div>
+      <div class="skill"><i class="fab fa-docker"></i> Docker</div>
+      <div class="skill"><i class="fas fa-database"></i> SQL</div>
     </div>
   </section>
 
-  <section class="social">
+  <section class="social scroll-anim">
     <h2>Connect With Me</h2>
     <div class="social-icons">
       <a href="https://www.instagram.com/fitra_riyadi._/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -417,17 +250,30 @@
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 <span>Fitra Riadi</span> | Game & Software Developer</p>
-  </footer>
+  <footer><p>© 2025 <span>Fitra Riadi</span> | Game & Software Developer</p></footer>
 
   <script>
-    const toggle = document.getElementById('menu-toggle');
-    const navbar = document.getElementById('navbar');
+    // Animasi Scroll
+    const scrollElements = document.querySelectorAll('.scroll-anim');
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add('show');
+      });
+    },{threshold:0.15});
+    scrollElements.forEach(el=>observer.observe(el));
 
-    toggle.addEventListener('click', () => {
-      navbar.classList.toggle('active');
-      toggle.classList.toggle('open');
+    // Toggle Menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navbar = document.getElementById('navbar');
+    menuToggle.addEventListener('click', ()=>{
+      navbar.classList.toggle('show');
+      menuToggle.classList.toggle('active');
+    });
+    document.querySelectorAll('#navbar a').forEach(link=>{
+      link.addEventListener('click', ()=>{
+        navbar.classList.remove('show');
+        menuToggle.classList.remove('active');
+      });
     });
   </script>
 </body>
